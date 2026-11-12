@@ -1,0 +1,458 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Geist+Mono:wght@100..900&display=swap');
+
+/* -------------------------------------------------------------
+   NEXT SHADCN ADMIN DASHBOARD (STUDIO ADMIN) SPECIFICATION:
+   1. Primary Font: Geist (Next.js / Shadcn official font)
+   2. Monospace Font: Geist Mono
+   ------------------------------------------------------------- */
+:root {
+  --font-primary: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "Geist Mono", monospace;
+}
+
+html, 
+body, 
+#root, 
+#re-management-app-root {
+  font-family: var(--font-primary);
+}
+
+/* Base typography elements */
+h1, h2, h3, h4, h5, h6,
+button, input, select, textarea, label, table, th, td, p, span, div, a {
+  font-family: var(--font-primary);
+}
+
+.font-primary,
+.font-sans {
+  font-family: var(--font-primary) !important;
+}
+
+.font-mono {
+  font-family: var(--font-mono) !important;
+}
+
+/* Mobile & Tablet Safe Area bottom padding utility */
+.safe-area-inset-bottom {
+  padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+}
+
+/* Custom sleek scrollbars for fixed sidebar & scrollable main screen */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(113, 113, 122, 0.35);
+  border-radius: 9999px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(113, 113, 122, 0.6);
+}
+.theme-light .custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(161, 161, 170, 0.6);
+}
+.theme-light .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(113, 113, 122, 0.8);
+}
+
+/* =========================================================================
+   DOMUS OS ACCESSIBLE HIGH-CONTRAST LIGHT MODE SPECIFICATION
+   WCAG AA compliant contrast ratios across cards, texts, buttons, and badges
+   ========================================================================= */
+
+.theme-light {
+  background-color: #f4f4f5 !important;
+  color: #18181b !important;
+}
+
+/* Base canvas and outer background */
+.theme-light .bg-\[\#09090b\],
+.theme-light .bg-black,
+.theme-light .bg-\[\#141416\],
+.theme-light .bg-\[\#09090b\]\/40 {
+  background-color: #f4f4f5 !important;
+}
+
+/* Header, Sidebar, Cards, Panels, and Dropdowns */
+.theme-light header,
+.theme-light aside,
+.theme-light .bg-\[\#111114\],
+.theme-light .bg-\[\#18181b\],
+.theme-light .bg-zinc-900:not(button):not([class*="hover:"]),
+.theme-light .bg-zinc-900\/80 {
+  background-color: #ffffff !important;
+  border-color: #e4e4e7 !important;
+}
+
+/* Sub-panels, nested cards, card headers, table headers, and toolbar strips */
+.theme-light .bg-\[\#141417\],
+.theme-light .bg-zinc-900\/50,
+.theme-light .bg-zinc-900\/40,
+.theme-light .bg-zinc-900\/30,
+.theme-light .bg-zinc-900\/20,
+.theme-light .bg-zinc-950\/40,
+.theme-light .bg-zinc-950\/60,
+.theme-light .bg-zinc-950\/80 {
+  background-color: #f8fafc !important;
+  border-color: #e4e4e7 !important;
+}
+
+/* Inner pill containers & secondary backdrops */
+.theme-light .bg-zinc-950:not(input):not(select):not(textarea):not(button) {
+  background-color: #f4f4f5 !important;
+  border-color: #e4e4e7 !important;
+}
+
+.theme-light .bg-zinc-850,
+.theme-light .bg-zinc-850\/60,
+.theme-light .bg-zinc-800\/60 {
+  background-color: #f4f4f5 !important;
+  border-color: #e4e4e7 !important;
+}
+
+/* =========================================================================
+   TEXT CONTRAST & TYPOGRAPHY HIERARCHY IN LIGHT MODE
+   ========================================================================= */
+
+/* Primary and high-emphasis headings */
+.theme-light .text-white,
+.theme-light .text-zinc-100,
+.theme-light .text-zinc-200 {
+  color: #09090b !important;
+}
+
+/* Secondary body text and values */
+.theme-light .text-zinc-300,
+.theme-light .text-zinc-400 {
+  color: #27272a !important;
+}
+
+/* Uppercase metadata, section subheads, table header labels (min 5.2:1 contrast) */
+.theme-light .text-zinc-500,
+.theme-light .text-zinc-450 {
+  color: #52525b !important;
+}
+
+.theme-light .text-zinc-600 {
+  color: #71717a !important;
+}
+
+.theme-light .text-zinc-700 {
+  color: #a1a1aa !important;
+}
+
+/* =========================================================================
+   BUTTON CONTRAST & RETENTION RULES (NEVER INVERT SOLID BUTTONS)
+   ========================================================================= */
+
+/* 1. Solid dark & colored action buttons MUST retain crisp white text & icons */
+.theme-light button.bg-zinc-950,
+.theme-light button.bg-zinc-900,
+.theme-light button.bg-zinc-850,
+.theme-light button.bg-zinc-800,
+.theme-light button.bg-emerald-600,
+.theme-light button.bg-emerald-500,
+.theme-light button.bg-cyan-600,
+.theme-light button.bg-cyan-500,
+.theme-light button.bg-rose-600,
+.theme-light button.bg-red-600,
+.theme-light button.bg-blue-600,
+.theme-light button.bg-violet-600,
+.theme-light button[class*="bg-emerald-"],
+.theme-light button[class*="bg-cyan-"],
+.theme-light button[class*="bg-rose-"],
+.theme-light button[class*="bg-red-"],
+.theme-light button[class*="bg-blue-"],
+.theme-light button[class*="bg-violet-"],
+.theme-light a[class*="bg-emerald-"],
+.theme-light a[class*="bg-cyan-"],
+.theme-light a[class*="bg-rose-"] {
+  color: #ffffff !important;
+}
+
+.theme-light button.bg-zinc-950 *,
+.theme-light button.bg-zinc-900 *,
+.theme-light button.bg-zinc-850 *,
+.theme-light button.bg-zinc-800 *,
+.theme-light button.bg-emerald-600 *,
+.theme-light button.bg-emerald-500 *,
+.theme-light button.bg-cyan-600 *,
+.theme-light button.bg-cyan-500 *,
+.theme-light button.bg-rose-600 *,
+.theme-light button.bg-red-600 *,
+.theme-light button.bg-blue-600 *,
+.theme-light button.bg-violet-600 *,
+.theme-light button[class*="bg-emerald-"] *,
+.theme-light button[class*="bg-cyan-"] *,
+.theme-light button[class*="bg-rose-"] *,
+.theme-light button[class*="bg-red-"] *,
+.theme-light button[class*="bg-blue-"] *,
+.theme-light button[class*="bg-violet-"] *,
+.theme-light a[class*="bg-emerald-"] *,
+.theme-light a[class*="bg-cyan-"] *,
+.theme-light a[class*="bg-rose-"] * {
+  color: #ffffff !important;
+}
+
+/* 2. Active Sidebar Tab (Black background with pure white icon & text) */
+.theme-light .bg-zinc-800.text-white,
+.theme-light .bg-zinc-800.text-white * {
+  background-color: #18181b !important;
+  color: #ffffff !important;
+}
+
+/* 3. Inactive Sidebar Nav Items */
+.theme-light aside nav button:not(.bg-zinc-800) {
+  color: #52525b !important;
+}
+.theme-light aside nav button:not(.bg-zinc-800):hover {
+  background-color: #f4f4f5 !important;
+  color: #09090b !important;
+}
+.theme-light aside nav button:not(.bg-zinc-800) svg {
+  color: #71717a !important;
+}
+.theme-light aside nav button:not(.bg-zinc-800):hover svg {
+  color: #18181b !important;
+}
+
+/* 4. Primary CTA buttons (in dark mode they are bg-zinc-100 text-zinc-950, turn to prominent dark CTA in light mode) */
+.theme-light button.bg-zinc-100 {
+  background-color: #18181b !important;
+  color: #ffffff !important;
+  border-color: #18181b !important;
+}
+.theme-light button.bg-zinc-100 * {
+  color: #ffffff !important;
+}
+.theme-light button.bg-zinc-100:hover {
+  background-color: #27272a !important;
+  color: #ffffff !important;
+}
+
+/* 5. White secondary buttons get defined border and contrast */
+.theme-light button.bg-white {
+  background-color: #ffffff !important;
+  color: #18181b !important;
+  border: 1px solid #d4d4d8 !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+}
+.theme-light button.bg-white * {
+  color: #18181b !important;
+}
+.theme-light button.bg-white:hover {
+  background-color: #f4f4f5 !important;
+}
+
+/* =========================================================================
+   ACCESSIBLE COLORED SEMANTIC TEXT & STATUS BADGES
+   ========================================================================= */
+
+/* Emerald / Green (Active, Paid, Profit) */
+.theme-light .text-emerald-400 {
+  color: #059669 !important;
+}
+.theme-light .text-emerald-300 {
+  color: #047857 !important;
+}
+.theme-light [class*="bg-emerald-950"] {
+  background-color: #ecfdf5 !important;
+  border-color: #a7f3d0 !important;
+  color: #047857 !important;
+}
+.theme-light [class*="bg-emerald-950"] * {
+  color: #047857 !important;
+}
+
+/* Amber / Yellow (Pending, On Hold, Alert) */
+.theme-light .text-amber-400 {
+  color: #d97706 !important;
+}
+.theme-light .text-amber-500 {
+  color: #b45309 !important;
+}
+.theme-light [class*="bg-amber-950"] {
+  background-color: #fffbeb !important;
+  border-color: #fde68a !important;
+  color: #92400e !important;
+}
+.theme-light [class*="bg-amber-950"] * {
+  color: #92400e !important;
+}
+
+/* Red / Rose (Overdue, Danger, High Priority) */
+.theme-light .text-rose-400,
+.theme-light .text-red-400 {
+  color: #e11d48 !important;
+}
+.theme-light [class*="bg-rose-950"],
+.theme-light [class*="bg-red-950"] {
+  background-color: #fef2f2 !important;
+  border-color: #fecaca !important;
+  color: #b91c1c !important;
+}
+.theme-light [class*="bg-rose-950"] *,
+.theme-light [class*="bg-red-950"] * {
+  color: #b91c1c !important;
+}
+
+/* Cyan / Sky (Info, Logistics, Infrastructure) */
+.theme-light .text-cyan-400 {
+  color: #0891b2 !important;
+}
+.theme-light .text-cyan-300 {
+  color: #0e7490 !important;
+}
+.theme-light .text-sky-400 {
+  color: #0284c7 !important;
+}
+.theme-light [class*="bg-cyan-950"],
+.theme-light [class*="bg-sky-950"] {
+  background-color: #ecfeff !important;
+  border-color: #a5f3fc !important;
+  color: #0e7490 !important;
+}
+.theme-light [class*="bg-cyan-950"] *,
+.theme-light [class*="bg-sky-950"] * {
+  color: #0e7490 !important;
+}
+
+/* Violet / Purple (SaaS, SuperAdmin) */
+.theme-light .text-violet-400,
+.theme-light .text-violet-500 {
+  color: #7c3aed !important;
+}
+.theme-light [class*="bg-violet-950"],
+.theme-light [class*="bg-purple-950"] {
+  background-color: #f5f3ff !important;
+  border-color: #ddd6fe !important;
+  color: #6d28d9 !important;
+}
+.theme-light [class*="bg-violet-950"] * {
+  color: #6d28d9 !important;
+}
+
+/* Blue (Corporate, General Info) */
+.theme-light .text-blue-400,
+.theme-light .text-blue-500 {
+  color: #2563eb !important;
+}
+.theme-light [class*="bg-blue-950"] {
+  background-color: #eff6ff !important;
+  border-color: #bfdbfe !important;
+  color: #1d4ed8 !important;
+}
+.theme-light [class*="bg-blue-950"] * {
+  color: #1d4ed8 !important;
+}
+
+/* Star appraisal rating contrast */
+.theme-light .text-amber-500 svg.fill-current,
+.theme-light svg.fill-current.text-amber-400 {
+  color: #d97706 !important;
+}
+
+/* =========================================================================
+   BORDERS & DIVIDERS IN LIGHT MODE
+   ========================================================================= */
+
+.theme-light .border-zinc-800,
+.theme-light .border-zinc-850,
+.theme-light .border-zinc-900,
+.theme-light .border-zinc-750,
+.theme-light .border-zinc-700,
+.theme-light .border-zinc-800\/80,
+.theme-light .border-zinc-850\/60,
+.theme-light .border-zinc-850\/50,
+.theme-light .divide-zinc-800,
+.theme-light .divide-zinc-850 {
+  border-color: #e4e4e7 !important;
+}
+
+/* =========================================================================
+   FORM INPUTS, SELECTS, TEXTAREAS & OPTIONS
+   ========================================================================= */
+
+.theme-light input, 
+.theme-light select, 
+.theme-light textarea {
+  background-color: #ffffff !important;
+  color: #09090b !important;
+  border-color: #d4d4d8 !important;
+}
+
+.theme-light input::placeholder,
+.theme-light textarea::placeholder {
+  color: #71717a !important;
+}
+
+.theme-light input:focus, 
+.theme-light select:focus, 
+.theme-light textarea:focus {
+  border-color: #18181b !important;
+  box-shadow: 0 0 0 1px #18181b !important;
+}
+
+.theme-light option {
+  background-color: #ffffff !important;
+  color: #09090b !important;
+}
+
+/* =========================================================================
+   MODAL WINDOWS & COMMAND PALETTE OVERLAYS
+   ========================================================================= */
+
+.theme-light .fixed.inset-0.bg-black\/75,
+.theme-light .fixed.inset-0.bg-black\/70,
+.theme-light .fixed.inset-0.bg-black\/60,
+.theme-light .fixed.inset-0.bg-black\/50 {
+  background-color: rgba(15, 23, 42, 0.45) !important;
+}
+
+.theme-light .fixed.inset-0 .bg-\[\#111114\],
+.theme-light .fixed.inset-0 .bg-zinc-900 {
+  background-color: #ffffff !important;
+  border-color: #e4e4e7 !important;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.12), 0 8px 10px -6px rgba(0, 0, 0, 0.04) !important;
+}
+
+/* Notification toasts */
+.theme-light #app-alert-strip {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* =========================================================================
+   RECHARTS SVG COMPONENT ADAPTATIONS FOR LIGHT MODE
+   ========================================================================= */
+
+.theme-light .recharts-cartesian-grid line {
+  stroke: #e4e4e7 !important;
+}
+
+.theme-light .recharts-cartesian-axis-line {
+  stroke: #e4e4e7 !important;
+}
+
+.theme-light .recharts-cartesian-axis-tick text {
+  fill: #71717a !important;
+}
+
+.theme-light .recharts-default-tooltip {
+  background-color: #ffffff !important;
+  border: 1px solid #e4e4e7 !important;
+  color: #09090b !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Bottom mobile/tablet app bar */
+.theme-light #app-bottom-nav {
+  background-color: #ffffff !important;
+  border-top-color: #e4e4e7 !important;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.04) !important;
+}
