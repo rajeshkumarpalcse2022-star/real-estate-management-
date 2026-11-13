@@ -15,8 +15,13 @@ const SAVE_DEBOUNCE_MS = 300;
 
 const pendingData = new Map<string, unknown>();
 const pendingTimers = new Map<string, ReturnType<typeof setTimeout>>();
+ 
+const API_BASE_URL = (import.meta.env.VITE_API_URL || '').replace(/\/$/, '');
 
-const dbUrl = (key: string) => `/api/db/${encodeURIComponent(key)}`;
+const apiUrl = (path: string) => `${API_BASE_URL}${path}`;
+
+const dbUrl = (key: string) =>
+  apiUrl(`/api/db/${encodeURIComponent(key)}`);
 
 function sendSave(key: string, data: unknown, keepalive = false): Promise<void> {
   return fetch(dbUrl(key), {
@@ -67,7 +72,7 @@ export async function flushMongoSaves(): Promise<void> {
 export async function fetchAllMongoState(): Promise<Record<string, any> | null> {
   if (typeof window === 'undefined') return null;
   try {
-    const res = await fetch('/api/db');
+    const res = await fetch(apiUrl('/api/db'));
     if (!res.ok) return null;
     const json = await res.json();
     return json?.success && json.data ? json.data : null;
@@ -88,7 +93,7 @@ export interface MongoStatus {
 
 export async function fetchMongoStatus(): Promise<MongoStatus> {
   try {
-    const res = await fetch('/api/mongodb/status');
+    const res = await fetch(apiUrl('/api/mongodb/status'));
     return await res.json();
   } catch (err: any) {
     return { connected: false, error: err.message || 'Network error' };
